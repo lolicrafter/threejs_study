@@ -28,7 +28,7 @@ function degreesToRadians(degrees) {
     return degrees * Math.PI / 180;
 }
 
-const clock  = new THREE.Clock();
+const clock = new THREE.Clock();
 
 // const ani1 = gsap.to(cube.position, {x: 5, duration: 5,
 //     repeat: -1,
@@ -90,11 +90,8 @@ function toggleFullScreen() {
 const gui = new dat.GUI();
 
 
-
-
 const params = {
-    color: 0xffff00,
-    fn: () => {
+    color: 0xffff00, fn: () => {
         gsap.to(cube.position, {x: 5, duration: 2, yoyo: true, repeat: -1});
     }
 };
@@ -113,16 +110,10 @@ folder.add(cube.position, 'x').min(0).max(5).step(0.01).name('移动x轴').onCha
 }).onFinishChange((value) => {
     console.log('完全停下来了：' + value);
 });
-
+cube.material.transparent = true;
 folder.add(cube, 'visible').name('是否显示');
 folder.add(cube.material, 'wireframe').name('线框');
-folder.add(cube.material, 'opacity').min(0).max(1).step(0.01).name('透明度').onChange((value) => {
-    console.log('值被修改了：' + value);
-    cube.material.opacity = value;
-
-}).onFinishChange((value) => {
-    console.log('完全停下来了：' + value);
-});
+folder.add(cube.material, 'opacity').min(0).max(1).step(0.01).name('透明度')
 folder.open();
 
 
